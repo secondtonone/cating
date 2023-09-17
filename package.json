@@ -1,0 +1,47 @@
+{
+  "name": "imagine-engine-bot",
+  "version": "1.0.6",
+  "description": "Imagine engine bot for Telegram",
+  "scripts": {
+    "link": "node --experimental-fetch scripts/link.mjs",
+    "unlink": "node --experimental-fetch -r dotenv/config scripts/unlink.mjs",
+    "build": "tsc && npm run link",
+    "server": "node -r dotenv/config dist/bot.js",
+    "run": "npm run build && npm run server",
+    "build:watch": "tsc -w",
+    "server:watch": "nodemon -r dotenv/config dist/bot.js",
+    "dev": "concurrently \"npm run build:watch\" \"npm run server:watch\"",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint --fix . --ext .ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/secondtonone/imagine-engine-bot.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/secondtonone/imagine-engine-bot/issues"
+  },
+  "homepage": "https://github.com/secondtonone/imagine-engine-bot#readme",
+  "dependencies": {
+    "@types/node": "^20.5.9",
+    "grammy": "^1.18.1",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@grammyjs/runner": "^2.0.3",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "concurrently": "^8.2.1",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.49.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-standard-with-typescript": "^39.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-n": "^16.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "nodemon": "^3.0.1"
+  }
+}
