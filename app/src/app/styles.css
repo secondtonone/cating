@@ -1,0 +1,27 @@
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--tg-theme-bg-color, var(--color-page-background));
+}
+
+.radix-themes {
+  --red-a3: rgba(255, 45, 85, 0.08);
+  --blue-a3: rgba(0, 122, 255, 0.10);
+  --font-size-6: calc(22px * var(--scaling));
+  background: var(--tg-theme-bg-color, var(--color-page-background));
+  color: var(--tg-theme-text-color);
+}
+
+.rt-BaseButton:where(.rt-r-size-4) {
+  --base-button-height: 54px;
+}

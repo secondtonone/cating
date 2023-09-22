@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc && pnpm link",
+    "server": "node -r dotenv/config dist/bot.js",
+    "run": "pnpm build && pnpm server",
+    "build:watch": "tsc -w",
+    "server:watch": "nodemon -r dotenv/config dist/bot.js",
+    "dev": "concurrently \"pnpm build:watch\" \"pnpm server:watch\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "grammy": "^1.18.1"
+  },
+  "devDependencies": {
+    "@grammyjs/runner": "^2.0.3"
+  }
+}

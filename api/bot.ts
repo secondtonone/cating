@@ -1,6 +1,7 @@
 import { Bot, GrammyError, HttpError, webhookCallback } from 'grammy'
 
 const token = process.env.BOT_TOKEN
+const webApp = process.env.WEB_APP
 
 if (!token) throw new Error('BOT_TOKEN is unset')
 // Create your bot and tell it about your context type
@@ -28,7 +29,11 @@ const introductionMessage = 'Приветствую!'
 
 bot.command('start', async (ctx) =>
   await ctx.reply(introductionMessage, {
-    parse_mode: 'HTML'
+    reply_markup: {
+      inline_keyboard: [
+        [{ text: 'Запустить приложение', web_app: { url: webApp ?? '' } }]
+      ]
+    }
   })
 )
 
