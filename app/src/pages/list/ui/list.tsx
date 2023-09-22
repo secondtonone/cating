@@ -14,9 +14,9 @@ const data: Person[] = [
     location: 'New Home',
     zodiac: 'gemini',
     photos: [
-      '/src/shared/ui/assets/photos/kit-1.jpeg',
-      '/src/shared/ui/assets/photos/kit-2.jpeg',
-      '/src/shared/ui/assets/photos/kit-3.jpeg',
+      './kit-1.jpeg',
+      './kit-2.jpeg',
+      './kit-3.jpeg',
     ],
   },
   {
@@ -27,9 +27,9 @@ const data: Person[] = [
     location: 'Meow City',
     zodiac: 'leo',
     photos: [
-      '/src/shared/ui/assets/photos/pimp-1.jpeg',
-      '/src/shared/ui/assets/photos/pimp-2.jpeg',
-      '/src/shared/ui/assets/photos/pimp-3.jpeg',
+      './pimp-1.jpeg',
+      './pimp-2.jpeg',
+      './pimp-3.jpeg',
     ],
   },
   {
@@ -40,12 +40,13 @@ const data: Person[] = [
     location: 'Catland',
     zodiac: 'cancer',
     photos: [
-      '/src/shared/ui/assets/photos/oscar-1.jpeg',
-      '/src/shared/ui/assets/photos/oscar-2.jpeg',
-      '/src/shared/ui/assets/photos/oscar-3.jpeg',
+      './oscar-1.jpeg',
+      './oscar-2.jpeg',
+      './oscar-3.jpeg',
     ],
   },
 ];
+
 
 export interface IListProps {}
 
