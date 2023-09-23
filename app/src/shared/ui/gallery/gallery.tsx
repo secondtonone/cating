@@ -38,7 +38,8 @@ export const Gallery: FC<IGalleryProps> = ({ onClick, urls }) => {
 const Photo = styled.div<{ src: string; height: string }>`
   background-image: url(${(props) => props.src});
   background-repeat: no-repeat;
-  background-position: 50% 50%;
+  background-position: center center;
+  background-clip: content-box;
   background-size: cover;
   background-color: lightgray;
   width: 100%;
@@ -46,7 +47,7 @@ const Photo = styled.div<{ src: string; height: string }>`
   height: ${(props) => props.height};
 
   transition: background-image .2s ease-out;
-  transform-origin: bottom;
+  transform-origin: left top;
 `;
 
 const PhotoWithBorder = styled(Photo)<{ withBottomBorder: boolean }>`

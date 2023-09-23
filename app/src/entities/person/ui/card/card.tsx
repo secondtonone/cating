@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 
 export interface ICardProps extends Omit<Person, 'id'>, IBarProps {}
 
-export const Card: FC<ICardProps> = ({photos, onClickRight, onClickLeft, ...bio}) => {
+export const Card: FC<ICardProps> = ({photos, onClickRight, onClickLeft, disabled, ...bio}) => {
   return (
     <CardContainer direction="column">
       <Flex grow="1" shrink="0">
@@ -17,7 +17,7 @@ export const Card: FC<ICardProps> = ({photos, onClickRight, onClickLeft, ...bio}
           {...bio}
         />
       </Flex>
-      <Bar onClickRight={onClickRight} onClickLeft={onClickLeft} />
+      <Bar disabled={disabled} onClickRight={onClickRight} onClickLeft={onClickLeft} />
     </CardContainer>
   );
 };
