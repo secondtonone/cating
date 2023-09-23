@@ -9,10 +9,10 @@ export interface ICardProps extends Omit<Person, 'id'>, IBarProps {}
 export const Card: FC<ICardProps> = ({photos, onClickRight, onClickLeft, ...bio}) => {
   return (
     <CardContainer direction="column">
-      <Flex grow="0" shrink="1">
+      <Flex grow="1" shrink="0">
         <Gallery urls={photos} />
       </Flex>
-      <Flex grow="1">
+      <Flex grow="0">
         <Bio
           {...bio}
         />

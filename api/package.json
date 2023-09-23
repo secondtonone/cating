@@ -4,10 +4,10 @@
   "description": "",
   "scripts": {
     "build": "tsc && pnpm link",
-    "server": "node -r dotenv/config dist/bot.js",
+    "server": "node -r dotenv/config dist/bot.js dotenv_config_path=../.env",
     "run": "pnpm build && pnpm server",
     "build:watch": "tsc -w",
-    "server:watch": "nodemon -r dotenv/config dist/bot.js",
+    "server:watch": "nodemon -r dotenv/config dist/bot.js dotenv_config_path=../.env",
     "dev": "concurrently \"pnpm build:watch\" \"pnpm server:watch\""
   },
   "keywords": [],

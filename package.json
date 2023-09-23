@@ -6,6 +6,7 @@
   "scripts": {
     "build": "pnpm --filter app build",
     "link": "node --experimental-fetch scripts/link.mjs",
+    "link:local": "node --experimental-fetch -r dotenv/config scripts/link.mjs",
     "unlink": "node --experimental-fetch -r dotenv/config scripts/unlink.mjs",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint --fix . --ext .ts"

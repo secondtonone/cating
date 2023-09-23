@@ -132,3 +132,5 @@ dist
 .vscode
 ngrok.yml
 *.code-workspace
+.DS_Store
+**/.DS_Store

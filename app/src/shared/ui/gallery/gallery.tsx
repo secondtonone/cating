@@ -24,7 +24,7 @@ export const Gallery: FC<IGalleryProps> = ({ onClick, urls }) => {
   return (
     <Grid columns="2" onClick={onClickHandler} width="100%">
       <Flex>
-        <Photo src={first} height="390px" />
+        <Photo src={first} height="100%" />
       </Flex>
       <Flex direction="column">
         {rest.map((src, index) => (
@@ -46,6 +46,7 @@ const Photo = styled.div<{ src: string; height: string }>`
   height: ${(props) => props.height};
 
   transition: background-image .2s ease-out;
+  transform-origin: bottom;
 `;
 
 const PhotoWithBorder = styled(Photo)<{ withBottomBorder: boolean }>`
