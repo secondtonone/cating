@@ -14,7 +14,7 @@ export const Gallery: FC<IGalleryProps> = ({ onClick, urls }) => {
 
   const [props, api] = useSpring(
     () => ({
-      opacity: 1,
+      filter: 'blur(0)',
       ...config.gentle
     }),
     []
@@ -25,8 +25,8 @@ export const Gallery: FC<IGalleryProps> = ({ onClick, urls }) => {
 
     setOrder(rearrangedArray);
     api.start({
-      from: { opacity: 0 },
-      to: { opacity: 1 },
+      from: { filter: 'blur(5px) grayscale(100%)' },
+      to: { filter: 'blur(0) grayscale(0)' },
       config: config.gentle
     });
 
