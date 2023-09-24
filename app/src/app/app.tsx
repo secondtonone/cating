@@ -9,6 +9,7 @@ const App = (): JSX.Element => {
   useEffect(() => {
     tg.ready();
     tg.expand();
+    window.scroll(0, window.document.body.scrollHeight);
   }, [])
   
 

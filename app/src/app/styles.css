@@ -12,6 +12,7 @@ body {
   width: 100vw;
   height: 100vh;
   background: var(--tg-theme-bg-color, var(--color-page-background));
+  overscroll-behavior: none;
 }
 
 .radix-themes {

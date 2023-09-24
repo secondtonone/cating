@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import { Flex, Grid } from '@radix-ui/themes';
 import styled from '@emotion/styled';
 import { rearrangeArray } from '@/shared';
+import { useSpring, animated, config } from '@react-spring/web';
 
 export interface IGalleryProps {
   onClick?: () => void;
@@ -11,46 +12,90 @@ export interface IGalleryProps {
 export const Gallery: FC<IGalleryProps> = ({ onClick, urls }) => {
   const [photos, setOrder] = useState(urls);
 
+  const [props, api] = useSpring(
+    () => ({
+      from: { opacity: 0 },
+      opacity: 1,
+      duration: 0.2,
+      ...config.gentle
+    }),
+    []
+  );
+
   const onClickHandler = () => {
     const rearrangedArray = rearrangeArray(photos);
 
     setOrder(rearrangedArray);
+    api.start({
+      from: { opacity: 0 },
+      to: { opacity: 1 },
+      config: config.gentle
+    });
 
-    if(typeof onClick === 'function') onClick();
+    if (typeof onClick === 'function') onClick();
   };
 
   const [first, ...rest] = photos;
 
   return (
-    <Grid columns="2" onClick={onClickHandler} width="100%">
-      <Flex>
-        <Photo src={first} height="100%" />
-      </Flex>
+    <Grid
+      columns="2"
+      onClick={onClickHandler}
+      width="100%"
+      style={{ background: 'lightgray' }}
+    >
+      <Photo style={props}>
+        <img src={first} />
+      </Photo>
       <Flex direction="column">
         {rest.map((src, index) => (
-          <PhotoWithBorder height="50%" key={src} src={src} withBottomBorder={!(index % 2)} />
+          <PhotoWithBorder
+            height="50%"
+            src={src}
+            withBottomBorder={!(index % 2)}
+            key={src}
+            style={props}
+          />
         ))}
       </Flex>
     </Grid>
   );
 };
 
-const Photo = styled.div<{ src: string; height: string }>`
+const Photo = styled(animated.div)`
+  width: 100%;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background-color: lightgray;
+  will-change: opacity;
+
+  & img {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+`;
+
+const PhotoWithBorder = styled(animated.div)<{
+  src: string;
+  height: string;
+  withBottomBorder: boolean;
+}>`
   background-image: url(${(props) => props.src});
   background-repeat: no-repeat;
   background-position: center center;
   background-clip: content-box;
   background-size: cover;
   background-color: lightgray;
+  will-change: opacity;
   width: 100%;
   position: relative;
   height: ${(props) => props.height};
 
-  transition: background-image .2s ease-out;
-  transform-origin: left top;
-`;
-
-const PhotoWithBorder = styled(Photo)<{ withBottomBorder: boolean }>`
   &::before,
   &::after {
     content: '';
@@ -65,10 +110,13 @@ const PhotoWithBorder = styled(Photo)<{ withBottomBorder: boolean }>`
     width: 1px;
   }
 
-  ${(props) => props.withBottomBorder ?`&::after {
+  ${(props) =>
+    props.withBottomBorder
+      ? `&::after {
     bottom: 0;
     left: 0;
     width: 100%;
     height: 1px;
-  }`:''}
+  }`
+      : ''}
 `;
