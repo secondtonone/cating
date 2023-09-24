@@ -9,10 +9,6 @@ const App = (): JSX.Element => {
   useEffect(() => {
     tg.ready();
     tg.expand();
-
-    document.addEventListener('touchmove', (event) => {
-      event.preventDefault();
-    });
   }, [])
   
 

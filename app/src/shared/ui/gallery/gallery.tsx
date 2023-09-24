@@ -14,9 +14,7 @@ export const Gallery: FC<IGalleryProps> = ({ onClick, urls }) => {
 
   const [props, api] = useSpring(
     () => ({
-      from: { opacity: 0 },
       opacity: 1,
-      duration: 0.2,
       ...config.gentle
     }),
     []
