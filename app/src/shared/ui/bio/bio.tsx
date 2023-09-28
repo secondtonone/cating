@@ -6,7 +6,7 @@ import Cancer from '@/shared/ui/assets/svg/cancer.svg?react';
 import Gemini from '@/shared/ui/assets/svg/gemini.svg?react';
 import Leo from '@/shared/ui/assets/svg/leo.svg?react';
 import styled from '@emotion/styled';
-import { Person } from '@/shared';
+import type { Person } from '@/shared';
 
 const zodiacs = {
   cancer: <Cancer />,

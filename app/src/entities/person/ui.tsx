@@ -1,23 +1,31 @@
 import { FC } from 'react';
 import { Flex } from '@radix-ui/themes';
 
-import { Bar, Gallery, Bio, Person, IBarProps } from '@/shared';
+import { Bar, Gallery, Bio, type Person, IBarProps } from '@/shared';
 import styled from '@emotion/styled';
 
 export interface ICardProps extends Omit<Person, 'id'>, IBarProps {}
 
-export const Card: FC<ICardProps> = ({photos, onClickRight, onClickLeft, disabled, ...bio}) => {
+export const Card: FC<ICardProps> = ({
+  photos,
+  onClickRight,
+  onClickLeft,
+  disabled,
+  ...bio
+}) => {
   return (
     <CardContainer direction="column">
       <Flex grow="1" shrink="0">
         <Gallery urls={photos} />
       </Flex>
       <Flex grow="0">
-        <Bio
-          {...bio}
-        />
+        <Bio {...bio} />
       </Flex>
-      <Bar disabled={disabled} onClickRight={onClickRight} onClickLeft={onClickLeft} />
+      <Bar
+        disabled={disabled}
+        onClickRight={onClickRight}
+        onClickLeft={onClickLeft}
+      />
     </CardContainer>
   );
 };

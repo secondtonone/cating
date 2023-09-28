@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Button, Grid } from '@radix-ui/themes';
 import Check from '@/shared/ui/assets/svg/check.svg?react';
 import Close from '@/shared/ui/assets/svg/x.svg?react';
+import { DISABLED_BY_ANIM_ID } from '@/shared';
 
 export interface IBarProps {
   disabled?: boolean
@@ -10,10 +11,14 @@ export interface IBarProps {
 }
 
 export const Bar: FC<IBarProps> = ({ onClickRight, onClickLeft, disabled }) => {
+  const attributes = {
+    [DISABLED_BY_ANIM_ID]: true
+  };
+
   return (
     <Grid columns="2" gap="3" mt="4" mb="4" px="4">
       <Button
-        data-animated-disable
+        {...attributes}
         disabled={disabled}
         size="4"
         color="red"
@@ -24,7 +29,7 @@ export const Bar: FC<IBarProps> = ({ onClickRight, onClickLeft, disabled }) => {
         <Close />
       </Button>
       <Button
-        data-animated-disable
+        {...attributes}
         disabled={disabled}
         size="4"
         color="blue"

@@ -10,7 +10,7 @@ const CustomTheme: FC<ICustomThemeProps> = ({ children }) => {
   const { scheme } = useTelegram();
   
   return (
-    <Theme appearance={scheme}>
+    <Theme appearance={ scheme }>
       {children}
     </Theme>
   );

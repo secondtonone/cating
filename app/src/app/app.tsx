@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 
 import { useTelegram } from '@/shared';
-import { List } from '@/pages';
+import Router from '@/pages';
+import { RouterProvider } from './providers';
 
 const App = (): JSX.Element => {
   const { tg } = useTelegram();
@@ -9,11 +10,12 @@ const App = (): JSX.Element => {
   useEffect(() => {
     tg.ready();
     tg.expand();
-  }, [])
-  
+  }, []);
 
   return (
-    <List />
+    <RouterProvider>
+      <Router />
+    </RouterProvider>
   );
 };
 
