@@ -37,7 +37,8 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
       onRest: (e) => {
         if (e.finished) {
           if (typeof handler === 'function') handler();
-          if (buttonBlockSelector) changeButtonState(false, buttonBlockSelector);
+          if (buttonBlockSelector)
+            changeButtonState(false, buttonBlockSelector);
         }
       },
     }),

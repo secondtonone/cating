@@ -1,4 +1,10 @@
-import { createStore, createEffect, createEvent, forward, sample } from 'effector';
+import {
+  createStore,
+  createEffect,
+  createEvent,
+  forward,
+  sample,
+} from 'effector';
 import { useStore, createGate, useGate } from 'effector-react';
 import { produce } from 'immer';
 import type { Person } from '@/shared';
@@ -14,13 +20,9 @@ export const getPersonListFx = createEffect(() => {
 const personsInitialState: Person[] = [];
 
 export const $persons = createStore<Person[]>(personsInitialState)
-  .on(getPersonListFx.doneData, (state, payload) => ([
-    ...state,
-    ...payload
-  ]))
-  .on(
-    removeLast,
-    (state) => produce(state, (draft) => {
+  .on(getPersonListFx.doneData, (state, payload) => [...state, ...payload])
+  .on(removeLast, (state) =>
+    produce(state, (draft) => {
       draft.pop();
     })
   );
@@ -34,10 +36,10 @@ export const init = () => {
     },
     clock: removeLast,
     filter: ({ lastInPerson }) => lastInPerson,
-    target: getPersonListFx
-  })
+    target: getPersonListFx,
+  });
 
-  forward({from: PersonGate.state, to: getPersonListFx})
+  forward({ from: PersonGate.state, to: getPersonListFx });
 
   $persons.reset(PersonGate.close);
 };
@@ -46,19 +48,18 @@ const usePersons = (): Person[] => useStore($persons);
 
 const usePersonsGate = () => useGate(PersonGate);
 
-
 export const events = {
-  removeLast
+  removeLast,
 };
 
 export const gates = {
-  usePersonsGate
+  usePersonsGate,
 };
 
 export const effects = {
-  getPersonListFx
+  getPersonListFx,
 };
 
 export const selectors = {
-  usePersons
+  usePersons,
 };

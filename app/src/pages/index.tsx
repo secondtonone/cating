@@ -6,10 +6,7 @@ const MatchMakePage = lazy(() => import('./matchmake'));
 const Router: FC = () => (
   <Routes>
     <Route path="/" element={<MatchMakePage />} />
-    <Route
-      path="*"
-      element={<MatchMakePage />}
-    />
+    <Route path="*" element={<MatchMakePage />} />
   </Routes>
 );
 

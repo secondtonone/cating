@@ -11,7 +11,7 @@ import type { Person } from '@/shared';
 const zodiacs = {
   cancer: <Cancer />,
   gemini: <Gemini />,
-  leo: <Leo />
+  leo: <Leo />,
 } as const;
 
 export interface IBioProps extends Omit<Person, 'photos' | 'id'> {}
@@ -20,14 +20,23 @@ export const Bio: FC<IBioProps> = ({ name, age, about, zodiac, location }) => {
   return (
     <Box pt="4" px="4">
       <Flex align="center" mb="2">
-        <Heading size="6" weight="medium" mr="1">{name}, {age}</Heading> <Verified />
+        <Heading size="6" weight="medium" mr="1">
+          {name}, {age}
+        </Heading>{' '}
+        <Verified />
       </Flex>
       <Flex direction="row" align="center" mb="2">
         <Flex align="center" mr="4">
-          <Pin /> <Text size="2" ml="1">{location}</Text>
+          <Pin />{' '}
+          <Text size="2" ml="1">
+            {location}
+          </Text>
         </Flex>
         <Flex align="center">
-          {zodiacs[zodiac]} <CustomText size="2" ml="1">{zodiac}</CustomText>
+          {zodiacs[zodiac]}{' '}
+          <CustomText size="2" ml="1">
+            {zodiac}
+          </CustomText>
         </Flex>
       </Flex>
       <Box>

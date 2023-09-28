@@ -5,14 +5,14 @@ import Close from '@/shared/ui/assets/svg/x.svg?react';
 import { DISABLED_BY_ANIM_ID } from '@/shared';
 
 export interface IBarProps {
-  disabled?: boolean
+  disabled?: boolean;
   onClickRight?: () => void;
   onClickLeft?: () => void;
 }
 
 export const Bar: FC<IBarProps> = ({ onClickRight, onClickLeft, disabled }) => {
   const attributes = {
-    [DISABLED_BY_ANIM_ID]: true
+    [DISABLED_BY_ANIM_ID]: true,
   };
 
   return (

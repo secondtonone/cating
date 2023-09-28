@@ -1,4 +1,7 @@
-export const changeButtonState = (isDisable: boolean, buttonBlockSelector: string) => {
+export const changeButtonState = (
+  isDisable: boolean,
+  buttonBlockSelector: string
+) => {
   const buttons = document.querySelectorAll(buttonBlockSelector);
 
   buttons.forEach((button) => {

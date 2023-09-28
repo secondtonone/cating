@@ -1,5 +1,3 @@
 import Theme from './theme';
 
-export {
-  Theme
-};
+export { Theme };

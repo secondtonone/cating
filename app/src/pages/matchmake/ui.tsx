@@ -1,5 +1,11 @@
 import { FC } from 'react';
-import { Card, selectors, events, gates, init as initPersons } from '@/entities';
+import {
+  Card,
+  selectors,
+  events,
+  gates,
+  init as initPersons,
+} from '@/entities';
 import { DISABLED_BY_ANIM_ID } from '@/shared';
 import { Box } from '@radix-ui/themes';
 import { MatchSwipe } from '@/features';

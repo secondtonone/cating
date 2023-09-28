@@ -15,7 +15,7 @@ export const Gallery: FC<IGalleryProps> = ({ onClick, urls }) => {
   const [props, api] = useSpring(
     () => ({
       filter: 'blur(0)',
-      ...config.gentle
+      ...config.gentle,
     }),
     []
   );
@@ -27,7 +27,7 @@ export const Gallery: FC<IGalleryProps> = ({ onClick, urls }) => {
     api.start({
       from: { filter: 'blur(5px) grayscale(100%) opacity(0)' },
       to: { filter: 'blur(0) grayscale(0) opacity(1)' },
-      config: config.gentle
+      config: config.gentle,
     });
 
     if (typeof onClick === 'function') onClick();
