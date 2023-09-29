@@ -20,7 +20,7 @@ export const getPersonListFx = createEffect(() => {
 const personsInitialState: Person[] = [];
 
 export const $persons = createStore<Person[]>(personsInitialState)
-  .on(getPersonListFx.doneData, (state, payload) => [...state, ...payload])
+  .on(getPersonListFx.doneData, (state, payload) => [...payload, ...state])
   .on(removeLast, (state) =>
     produce(state, (draft) => {
       draft.pop();

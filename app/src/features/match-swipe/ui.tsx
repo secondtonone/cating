@@ -1,4 +1,5 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
+import debounce from 'lodash.debounce';
 import type { Person } from '@/shared';
 import { Box } from '@radix-ui/themes';
 import { useSprings, animated } from '@react-spring/web';
@@ -23,6 +24,13 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
 }) => {
   const width = window.innerWidth;
 
+  const buttonButtonState = useCallback(
+    debounce(() => {
+      if (buttonBlockSelector) changeButtonState(true, buttonBlockSelector);
+    }, 500),
+    [buttonBlockSelector]
+  );
+
   const [props, api] = useSprings(
     list.length,
     (i: number) => ({
@@ -37,8 +45,10 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
       onRest: (e) => {
         if (e.finished) {
           if (typeof handler === 'function') handler();
-          if (buttonBlockSelector)
+          if (buttonBlockSelector) {
+            buttonButtonState.cancel();
             changeButtonState(false, buttonBlockSelector);
+          }
         }
       },
     }),
@@ -46,6 +56,7 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
   );
 
   const buttonHandler = (dir: -1 | 1, index: number) => {
+    buttonButtonState.cancel();
     api.start((i) => {
       if (i !== index) {
         return;
@@ -61,10 +72,14 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
     ({ args: [index], down, movement: [mx], direction: [xDir] }) => {
       const dir = xDir > 0 ? 1 : -1;
 
+      buttonButtonState();
+
       api.start((i) => {
         if (i !== index) return;
-        if (!down) return { x: width * dir, immediate: true };
-        if (buttonBlockSelector) changeButtonState(true, buttonBlockSelector);
+        if (!down) {
+          buttonButtonState.cancel();
+          return { x: width * dir, immediate: true };
+        }
 
         const x = down ? Math.abs(mx) * dir * 5 : 0;
 
