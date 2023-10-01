@@ -14,6 +14,7 @@ export interface IMatchSwipeProps {
     handler: (dir: -1 | 1, index: number) => void;
   }) => React.ReactNode;
   buttonBlockSelector?: string;
+  swipeEnabled?: boolean;
 }
 
 export const MatchSwipe: FC<IMatchSwipeProps> = ({
@@ -21,6 +22,7 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
   handler,
   children,
   buttonBlockSelector,
+  swipeEnabled = true
 }) => {
   const width = window.innerWidth;
 
@@ -69,28 +71,34 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
   };
 
   const bind = useDrag(
-    ({ args: [index], down, movement: [mx], direction: [xDir] }) => {
-      const dir = xDir > 0 ? 1 : -1;
+    ({ args: [index], first, down, movement: [mx], direction: [xDir], delta: [xDelta], cancel, velocity: [vx] }) => {
+      const dir = xDelta > 0 ? 1 : -1;
 
       buttonButtonState();
 
-      api.start((i) => {
-        if (i !== index) return;
-        if (!down) {
-          buttonButtonState.cancel();
-          return { x: width * dir, immediate: true };
-        }
+      if (first) {
+      
+        api.start((i) => {
+          if (i !== index) return;
+          if (!down) {
+            buttonButtonState.cancel();
+            return { x: width * dir, immediate: true };
+          }
 
-        const x = down ? Math.abs(mx) * dir * 5 : 0;
+          const x = down ? width * dir : 0;
 
-        return {
-          x,
-        };
-      });
+          return {
+            x,
+            velocity: vx
+          };
+        });
+      }
+
     },
     {
       preventAxisScroll: 'y',
       axis: 'x',
+      enabled: swipeEnabled
     }
   );
 

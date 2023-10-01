@@ -15,7 +15,6 @@ initPersons();
 const MatchMake: FC = () => {
   const list = selectors.usePersons();
   gates.usePersonsGate();
-  console.log(list);
 
   return (
     <Box

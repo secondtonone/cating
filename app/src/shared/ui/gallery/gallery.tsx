@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { Flex, Grid } from '@radix-ui/themes';
 import styled from '@emotion/styled';
-import { rearrangeArray } from '@/shared';
+import { rearrangeArray, shouldForwardProp } from '@/shared/lib';
 import { useSpring, animated, config } from '@react-spring/web';
 
 export interface IGalleryProps {
@@ -77,8 +77,10 @@ const Photo = styled(animated.div)`
     bottom: 0;
   }
 `;
+/* withConfig({ shouldForwardProp }) */
 
-const PhotoWithBorder = styled(animated.div)<{
+
+const PhotoWithBorder = styled(animated.div, shouldForwardProp)<{
   src: string;
   height: string;
   withBottomBorder: boolean;
