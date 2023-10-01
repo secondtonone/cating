@@ -9,6 +9,7 @@ import {
 import { DISABLED_BY_ANIM_ID } from '@/shared';
 import { Box } from '@radix-ui/themes';
 import { MatchSwipe } from '@/features';
+import config from '@/config';
 
 initPersons();
 
@@ -25,6 +26,7 @@ const MatchMake: FC = () => {
         list={list}
         handler={events.removeLast}
         buttonBlockSelector={`button[${DISABLED_BY_ANIM_ID}]`}
+        swipeEnabled={config.swipeEnabled}
       >
         {({ index, handler }) => (
           <Card

@@ -25,6 +25,7 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
   swipeEnabled = true
 }) => {
   const width = window.innerWidth;
+  const velocityMultiplier = 3.5;
 
   const buttonButtonState = useCallback(
     debounce(() => {
@@ -60,24 +61,21 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
   const buttonHandler = (dir: -1 | 1, index: number) => {
     buttonButtonState.cancel();
     api.start((i) => {
-      if (i !== index) {
-        return;
-      }
+      if (i !== index) return;
 
       return {
-        x: width * dir * 5,
+        x: width * dir * velocityMultiplier
       };
     });
   };
 
   const bind = useDrag(
-    ({ args: [index], first, down, movement: [mx], direction: [xDir], delta: [xDelta], cancel, velocity: [vx] }) => {
-      const dir = xDelta > 0 ? 1 : -1;
-
+    ({ args: [index], first, down, delta: [xDelta] }) => {
       buttonButtonState();
 
       if (first) {
-      
+        const dir = xDelta > 0 ? 1 : -1;
+
         api.start((i) => {
           if (i !== index) return;
           if (!down) {
@@ -85,11 +83,14 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
             return { x: width * dir, immediate: true };
           }
 
-          const x = down ? width * dir : 0;
+          const x = down ? width * dir * velocityMultiplier : 0;
 
           return {
             x,
-            velocity: vx
+            tension: 800,
+            friction: 100,
+            clamp: true,
+            precision: 0.0001
           };
         });
       }
