@@ -1,5 +1,5 @@
 const config = {
-  swipeEnabled: Boolean(import.meta.env.SWIPE_ENABLED) ?? true
+  swipeEnabled: Boolean(process.env.SWIPE_ENABLED) ?? true
 }
 
 export default config;
