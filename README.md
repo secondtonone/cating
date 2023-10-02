@@ -2,7 +2,7 @@
 
 Install dependencies:
 ```bash
-npm install
+pnpm install
 ```
 Creat `.env` file with: 
 |Configuration Key|Description|
