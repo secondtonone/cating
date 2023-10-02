@@ -7,7 +7,6 @@
     "build": "tsc && vite build",
     "dev": "vite",
     "expose": "ngrok http 5173",
-    "format": "prettier --config ./.prettierrc -w 'src/**/*.{tsx,ts}' && git update-index --again",
     "lint": "eslint src --ext .tsx --ext .ts",
     "lint:fix": "pnpm lint --fix",
     "serve": "vite preview"
@@ -82,7 +81,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-testing-library": "^5.6.0",
-    "ngrok": "5.0.0-beta.2",
-    "prettier": "^2.7.1"
+    "ngrok": "5.0.0-beta.2"
   }
 }

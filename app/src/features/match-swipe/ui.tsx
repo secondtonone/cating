@@ -22,7 +22,7 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
   handler,
   children,
   buttonBlockSelector,
-  swipeEnabled = true
+  swipeEnabled = true,
 }) => {
   const width = window.innerWidth;
   const velocityMultiplier = 3.5;
@@ -64,7 +64,7 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
       if (i !== index) return;
 
       return {
-        x: width * dir * velocityMultiplier
+        x: width * dir * velocityMultiplier,
       };
     });
   };
@@ -90,16 +90,15 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
             tension: 800,
             friction: 100,
             clamp: true,
-            precision: 0.0001
+            precision: 0.0001,
           };
         });
       }
-
     },
     {
       preventAxisScroll: 'y',
       axis: 'x',
-      enabled: swipeEnabled
+      enabled: swipeEnabled,
     }
   );
 

@@ -79,7 +79,6 @@ const Photo = styled(animated.div)`
 `;
 /* withConfig({ shouldForwardProp }) */
 
-
 const PhotoWithBorder = styled(animated.div, shouldForwardProp)<{
   src: string;
   height: string;

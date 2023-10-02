@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build": "pnpm --filter app build",
+    "front:dev": "pnpm --filter app dev",
+    "bot:dev": "pnpm --filter api dev",
     "link": "node --experimental-fetch scripts/link.mjs",
     "link:local": "node --experimental-fetch -r dotenv/config scripts/link.mjs",
     "unlink": "node --experimental-fetch -r dotenv/config scripts/unlink.mjs",
+    "format": "prettier --config ./.prettierrc -w '**/*.{tsx,ts}' && git update-index --again",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint --fix . --ext .ts"
   },
@@ -31,6 +34,7 @@
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-n": "^16.1.0",
     "eslint-plugin-promise": "^6.1.1",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "prettier": "^2.7.1"
   }
 }
