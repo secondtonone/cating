@@ -99,6 +99,7 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
       preventAxisScroll: 'y',
       axis: 'x',
       enabled: swipeEnabled,
+      preventScroll: 400
     }
   );
 
