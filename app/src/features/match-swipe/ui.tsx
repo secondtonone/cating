@@ -1,10 +1,11 @@
 import { FC, useCallback } from 'react';
 import debounce from 'lodash.debounce';
-import type { Person } from '@/shared';
+import { useTelegram, type Person } from '@/shared';
 import { Box } from '@radix-ui/themes';
 import { useSprings, animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 import { changeButtonState } from './lib';
+
 
 export interface IMatchSwipeProps {
   list: Array<Person>;
@@ -26,6 +27,7 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
 }) => {
   const width = window.innerWidth;
   const velocityMultiplier = 3.5;
+  const { hapticFeedback } = useTelegram();
 
   const buttonButtonState = useCallback(
     debounce(() => {
@@ -60,6 +62,8 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
 
   const buttonHandler = (dir: -1 | 1, index: number) => {
     buttonButtonState.cancel();
+    hapticFeedback.impactOccurred('light');
+
     api.start((i) => {
       if (i !== index) return;
 
@@ -75,6 +79,8 @@ export const MatchSwipe: FC<IMatchSwipeProps> = ({
 
       if (first) {
         const dir = xDelta > 0 ? 1 : -1;
+
+        hapticFeedback.impactOccurred('light');
 
         api.start((i) => {
           if (i !== index) return;
